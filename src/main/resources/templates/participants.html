@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Participants | Come & See</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/cas.css}">
+
+</head>
+
+
+<body class="cas-body">
+
+<div class="background-orb orb-one"></div>
+<div class="background-orb orb-two"></div>
+<div class="background-orb orb-three"></div>
+
+
+<header class="cas-navbar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            ✦
+        </div>
+
+        <div>
+
+            <h1>COME & SEE</h1>
+
+            <span>
+                Participant Management
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <nav class="cas-navigation">
+
+        <!-- HOME -->
+
+        <a
+                th:href="@{/home}"
+                class="nav-button">
+
+            Home
+
+        </a>
+
+
+        <!-- ADD PARTICIPANT -->
+
+        <a
+                th:href="@{/participants/add}"
+                class="nav-button">
+
+            + Add Participant
+
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="participants-page">
+
+
+    <!-- PAGE HEADER -->
+
+    <section class="list-header">
+
+        <div>
+
+            <div class="hero-badge">
+
+                <span class="pulse-dot"></span>
+
+                DATABASE
+
+            </div>
+
+
+            <h2>
+
+                Participants
+
+                <span>Directory</span>
+
+            </h2>
+
+
+            <p>
+
+                View, update and manage participant
+                information.
+
+            </p>
+
+        </div>
+
+
+        <div class="participant-count">
+
+            <span
+                    th:text="${#lists.size(participants)}">
+                0
+            </span>
+
+            <small>
+                Total Participants
+            </small>
+
+        </div>
+
+    </section>
+
+
+    <!-- SEARCH -->
+
+    <section class="toolbar">
+
+        <div class="search-box">
+
+            <span>⌕</span>
+
+            <input
+                    type="text"
+                    id="participantSearch"
+                    placeholder="Search participants...">
+
+        </div>
+
+    </section>
+
+
+    <!-- TABLE -->
+
+    <section class="table-card">
+
+        <div class="table-wrapper">
+
+            <table id="participantTable">
+
+                <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Name</th>
+
+                    <th>Phone Number</th>
+
+                    <th>Invited By</th>
+
+                    <th>Gender</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                <!-- PARTICIPANTS -->
+
+                <tr
+                        th:each="participant, participantStat : ${participants}"
+                        class="participant-row"
+                        th:data-id="${participant.id}">
+
+
+                    <!-- ID -->
+
+                    <td>
+
+                        <div class="id-badge"
+                             th:text="${participantStat.count}">
+
+                            1
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- NAME -->
+
+                    <td>
+
+                        <input
+                                class="table-input"
+                                type="text"
+                                name="name"
+                                th:value="${participant.name}"
+                                maxlength="100"
+                                disabled>
+
+                    </td>
+
+
+                    <!-- PHONE NUMBER -->
+
+                    <td>
+
+                        <div class="phone-input">
+
+                            <span class="phone-prefix">
+                                +91
+                            </span>
+
+                            <input
+                                    class="table-input phone-number-input"
+                                    type="tel"
+                                    name="phoneNumber"
+                                    th:value="${participant.phoneNumber}"
+                                    maxlength="10"
+                                    inputmode="numeric"
+                                    pattern="[0-9]{10}"
+                                    disabled>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- INVITED BY -->
+
+                    <td>
+
+                        <input
+                                class="table-input"
+                                type="text"
+                                name="invitedBy"
+                                th:value="${participant.invitedBy}"
+                                maxlength="100"
+                                disabled>
+
+                    </td>
+
+
+                    <!-- GENDER -->
+
+                    <td>
+
+                        <select
+                                class="table-input"
+                                name="gender"
+                                disabled>
+
+                            <option
+                                    value="Male"
+                                    th:selected="${participant.gender == 'Male'}">
+                                Male
+                            </option>
+
+                            <option
+                                    value="Female"
+                                    th:selected="${participant.gender == 'Female'}">
+                                Female
+                            </option>
+
+                            <option
+                                    value="Other"
+                                    th:selected="${participant.gender == 'Other'}">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </td>
+
+
+                    <!-- ACTIONS -->
+
+                    <td>
+
+                        <div class="row-actions">
+
+
+                            <!-- EDIT -->
+
+                            <button
+                                    type="button"
+                                    class="edit-button"
+                                    onclick="enableEdit(this)">
+
+                                <span>✎</span>
+
+                                Edit
+
+                            </button>
+
+
+                            <!-- SAVE -->
+
+                            <button
+                                    type="button"
+                                    class="save-button"
+                                    onclick="saveParticipant(this)">
+
+                                <span>✓</span>
+
+                                Save
+
+                            </button>
+
+
+                            <!-- DELETE -->
+
+                            <button
+                                    type="button"
+                                    class="delete-button"
+                                    onclick="deleteParticipant(this)"
+                                    title="Delete participant">
+
+                                ✕
+
+                            </button>
+
+
+                        </div>
+
+                    </td>
+
+
+                </tr>
+
+
+                <!-- EMPTY STATE -->
+
+                <tr
+                        th:if="${#lists.isEmpty(participants)}"
+                        class="empty-row">
+
+                    <td colspan="6">
+
+                        <div class="empty-state">
+
+                            <div class="empty-icon">
+                                ✦
+                            </div>
+
+                            <h3>
+                                No participants yet
+                            </h3>
+
+                            <p>
+                                Add your first participant
+                                to get started.
+                            </p>
+
+                            <a
+                                    th:href="@{/participants/add}"
+                                    class="submit-button small-button">
+
+                                Add Participant →
+
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- SUCCESS / ERROR TOAST -->
+
+<div
+        id="updateToast"
+        class="toast">
+
+    <div class="toast-icon">
+        ✓
+    </div>
+
+    <div>
+
+        <strong>
+            Details Updated
+        </strong>
+
+        <p>
+            Participant's details were updated successfully.
+        </p>
+
+    </div>
+
+    <button
+            type="button"
+            onclick="closeToast()">
+
+        ×
+
+    </button>
+
+</div>
+
+
+<script th:src="@{/js/cas.js}"></script>
+
+</body>
+
+</html>

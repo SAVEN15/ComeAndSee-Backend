@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Come & See</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/cas.css}">
+
+
+</head>
+
+<body class="cas-body login-page">
+
+<!-- BACKGROUND EFFECTS -->
+
+<div class="background-orb orb-one"></div>
+<div class="background-orb orb-two"></div>
+<div class="background-orb orb-three"></div>
+
+<!-- LOGIN -->
+
+<main class="login-container">
+
+    <div class="login-card">
+
+
+        <!-- ICON -->
+
+        <div class="login-icon">
+            ✦
+        </div>
+
+
+        <!-- BADGE -->
+
+        <div class="hero-badge">
+
+            <span class="pulse-dot"></span>
+
+            COME & SEE
+
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h1>
+
+            Welcome
+            <span>Back.</span>
+
+        </h1>
+
+
+        <!-- DESCRIPTION -->
+
+        <p class="login-subtitle">
+
+            Sign in to access the
+            participant management portal.
+
+        </p>
+
+
+        <!-- LOGIN FORM -->
+
+        <form
+                th:action="@{/login}"
+                method="post"
+                class="login-form">
+
+
+            <!-- USER ID -->
+
+            <div class="form-group">
+
+                <label for="username">
+
+                    User ID
+
+                    <span>*</span>
+
+                </label>
+
+
+                <div class="input-container">
+
+                    <div class="input-icon">
+                        ◉
+                    </div>
+
+
+                    <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Enter User ID"
+                            autocomplete="username"
+                            required>
+
+                </div>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="password">
+
+                    Password
+
+                    <span>*</span>
+
+                </label>
+
+
+                <div class="input-container">
+
+                    <div class="input-icon">
+                        ◆
+                    </div>
+
+
+                    <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter Password"
+                            autocomplete="current-password"
+                            required>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOGIN ERROR -->
+
+            <div th:if="${param.error}" class="login-error">
+
+                <span>!</span>
+
+                <span>
+        Invalid User ID or Password.
+    </span>
+
+            </div>
+
+
+            <!-- LOGIN BUTTON -->
+
+            <button
+                    type="submit"
+                    class="submit-button">
+
+
+            <span class="button-text">
+
+                Sign In
+
+            </span>
+
+
+                <span class="button-arrow">
+
+                →
+
+            </span>
+
+
+                <span class="button-loader"></span>
+
+
+            </button>
+
+
+        </form>
+
+
+        <!-- FOOTER -->
+
+        <div class="login-footer">
+
+            Come & See • Participant Portal
+
+        </div>
+
+
+    </div>
+
+</main>
+
+</body>
+
+</html>

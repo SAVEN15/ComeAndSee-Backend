@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Home | Come & See</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/cas.css}">
+
+</head>
+
+<body class="cas-body">
+
+<!-- =========================================================
+     BACKGROUND ORBS
+     ========================================================= -->
+
+<div class="background-orb orb-one"></div>
+
+<div class="background-orb orb-two"></div>
+
+<div class="background-orb orb-three"></div>
+
+
+<!-- =========================================================
+     NAVBAR
+     ========================================================= -->
+
+<header class="cas-navbar">
+
+    <!-- =====================================================
+         BRAND
+         ===================================================== -->
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            ✦
+        </div>
+
+        <div>
+
+            <h1>
+                COME & SEE
+            </h1>
+
+            <span>
+                Participant Management
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         NAVIGATION
+         ===================================================== -->
+
+    <nav class="cas-navigation">
+
+        <!-- HOME -->
+
+        <a
+                th:href="@{/home}"
+                class="nav-button">
+
+            Home
+
+        </a>
+
+
+        <!-- PARTICIPANTS -->
+
+        <a
+                th:href="@{/participants}"
+                class="nav-button">
+
+            Participants
+
+        </a>
+
+
+        <!-- ADD PARTICIPANT -->
+
+        <a
+                th:href="@{/participants/add}"
+                class="nav-button">
+
+            Add Participant
+
+        </a>
+
+
+        <!-- LOGOUT -->
+
+        <form
+                th:action="@{/logout}"
+                method="post"
+                class="logout-form">
+
+            <button
+                    type="submit"
+                    class="nav-button logout-button">
+
+                Logout
+
+            </button>
+
+        </form>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN HOME PAGE
+     ========================================================= -->
+
+<main class="home-page">
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <section class="home-header">
+
+        <div>
+
+            <div class="hero-badge">
+
+                <span class="pulse-dot"></span>
+
+                DASHBOARD
+
+            </div>
+
+
+            <h2>
+
+                Welcome to
+
+                <span>
+                    Come & See.
+                </span>
+
+            </h2>
+
+
+            <p>
+
+                Manage participants and view the
+                latest registration statistics.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ACTION CARDS
+         ===================================================== -->
+
+    <section class="home-actions">
+
+
+        <!-- =================================================
+             ADD PARTICIPANT
+             ================================================= -->
+
+        <a
+                th:href="@{/participants/add}"
+                class="home-action-card">
+
+            <div class="home-action-icon">
+
+                +
+
+            </div>
+
+            <div>
+
+                <h3>
+
+                    Add Participant
+
+                </h3>
+
+                <p>
+
+                    Register a new participant.
+
+                </p>
+
+            </div>
+
+            <span class="home-action-arrow">
+
+                →
+
+            </span>
+
+        </a>
+
+
+        <!-- =================================================
+             VIEW PARTICIPANTS
+             ================================================= -->
+
+        <a
+                th:href="@{/participants}"
+                class="home-action-card">
+
+            <div class="home-action-icon">
+
+                ≡
+
+            </div>
+
+            <div>
+
+                <h3>
+
+                    View Participants
+
+                </h3>
+
+                <p>
+
+                    View and manage all participants.
+
+                </p>
+
+            </div>
+
+            <span class="home-action-arrow">
+
+                →
+
+            </span>
+
+        </a>
+
+    </section>
+
+
+    <!-- =====================================================
+         PARTICIPANT STATISTICS
+         ===================================================== -->
+
+    <section class="statistics-section">
+
+        <div class="statistics-card">
+
+
+            <!-- =================================================
+                 STATISTICS HEADER
+                 ================================================= -->
+
+            <div class="statistics-header">
+
+                <div>
+
+                    <span class="section-label">
+
+                        PARTICIPANTS
+
+                    </span>
+
+                    <h3>
+
+                        Youth Overview
+
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 STATISTICS CONTENT
+                 ================================================= -->
+
+            <div class="statistics-content">
+
+
+                <!-- =================================================
+                     PERCENTAGE CIRCLE
+                     ================================================= -->
+
+                <div class="percentage-circle-wrapper">
+
+                    <div
+                            class="percentage-circle"
+                            th:style="'background: conic-gradient(var(--accent) 0% ' + ${newYouthPercentage} + '%, var(--accent-two) ' + ${newYouthPercentage} + '% 100%);'">
+
+                        <div class="percentage-circle-inner">
+
+                            <strong
+                                    th:text="${totalParticipants}">
+
+                                0
+
+                            </strong>
+
+                            <span>
+
+                                Total
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PERCENTAGE DETAILS
+                     ================================================= -->
+
+                <div class="percentage-details">
+
+
+                    <!-- =================================================
+                         NEW YOUTH
+                         ================================================= -->
+
+                    <div class="percentage-item">
+
+                        <div class="percentage-item-top">
+
+                            <div class="percentage-label">
+
+                                <span
+                                        class="percentage-dot new-dot">
+                                </span>
+
+                                <span>
+
+                                    New Youth
+
+                                </span>
+
+                            </div>
+
+                            <strong
+                                    th:text="${newYouthPercentage + '%'}">
+
+                                0%
+
+                            </strong>
+
+                        </div>
+
+
+                        <!-- PROGRESS BAR -->
+
+                        <div class="percentage-bar">
+
+                            <div
+                                    class="percentage-bar-fill new-fill"
+                                    th:style="'width:' + ${newYouthPercentage} + '%'">
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- COUNT -->
+
+                        <small>
+
+                            <span
+                                    th:text="${newYouth}">
+
+                                0
+
+                            </span>
+
+                            outside church
+
+                        </small>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         EXISTING YOUTH
+                         ================================================= -->
+
+                    <div class="percentage-item">
+
+                        <div class="percentage-item-top">
+
+                            <div class="percentage-label">
+
+                                <span
+                                        class="percentage-dot existing-dot">
+                                </span>
+
+                                <span>
+
+                                    Existing Youth
+
+                                </span>
+
+                            </div>
+
+                            <strong
+                                    th:text="${existingYouthPercentage + '%'}">
+
+                                0%
+
+                            </strong>
+
+                        </div>
+
+
+                        <!-- PROGRESS BAR -->
+
+                        <div class="percentage-bar">
+
+                            <div
+                                    class="percentage-bar-fill existing-fill"
+                                    th:style="'width:' + ${existingYouthPercentage} + '%'">
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- COUNT -->
+
+                        <small>
+
+                            <span
+                                    th:text="${existingYouth}">
+
+                                0
+
+                            </span>
+
+                            existing church youth
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         INVITER STATISTICS
+         ===================================================== -->
+
+    <section class="inviter-section">
+
+
+        <!-- =================================================
+             SECTION HEADING
+             ================================================= -->
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-label">
+
+                    REFERRALS
+
+                </span>
+
+                <h3>
+
+                    Who Invited How Many
+
+                </h3>
+
+                <p>
+
+                    Participants grouped according to
+                    who invited them.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             INVITER LIST
+             ================================================= -->
+
+        <div class="inviter-list">
+
+
+            <!-- =================================================
+                 EMPTY STATE
+                 ================================================= -->
+
+            <div
+                    th:if="${#maps.isEmpty(invitedGroups)}"
+                    class="no-inviter-data">
+
+                <div>
+
+                    ✦
+
+                </div>
+
+                <h3>
+
+                    No invitation data yet
+
+                </h3>
+
+                <p>
+
+                    Once participants are added with an
+                    inviter, they will appear here.
+
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 INVITER CARD
+                 ================================================= -->
+
+            <div
+                    th:each="group : ${invitedGroups}"
+                    class="inviter-card">
+
+
+                <!-- =================================================
+                     INVITER HEADER
+                     ================================================= -->
+
+                <div class="inviter-header">
+
+
+                    <!-- AVATAR -->
+
+                    <div class="inviter-avatar">
+
+                        <span
+                                th:text="${#strings.substring(group.key, 0, 1).toUpperCase()}">
+
+                            S
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- INVITER INFORMATION -->
+
+                    <div class="inviter-info">
+
+                        <h3
+                                th:text="${group.key}">
+
+                            Saravanan
+
+                        </h3>
+
+                        <span>
+
+                            Invited
+
+                            <strong
+                                    th:text="${#lists.size(group.value)}">
+
+                                3
+
+                            </strong>
+
+                            people
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- TOTAL COUNT -->
+
+                    <div class="inviter-count">
+
+                        <strong
+                                th:text="${#lists.size(group.value)}">
+
+                            3
+
+                        </strong>
+
+                        <span>
+
+                            PEOPLE
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     INVITED PARTICIPANTS
+                     ================================================= -->
+
+                <div class="invited-people">
+
+                    <div
+                            th:each="participant, participantStat : ${group.value}"
+                            class="invited-person">
+
+
+                        <!-- SERIAL NUMBER -->
+
+                        <span
+                                class="person-number"
+                                th:text="${participantStat.index + 1}">
+
+                            1
+
+                        </span>
+
+
+                        <!-- PARTICIPANT NAME -->
+
+                        <span
+                                th:text="${participant.name}">
+
+                            John
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+<script th:src="@{/js/casjs.js}"></script>
+
+</body>
+
+</html>

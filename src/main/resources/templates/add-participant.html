@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Participant | Come & See</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/cas.css}">
+
+</head>
+
+
+<body class="cas-body">
+
+<div class="background-orb orb-one"></div>
+<div class="background-orb orb-two"></div>
+<div class="background-orb orb-three"></div>
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<header class="cas-navbar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            ✦
+        </div>
+
+        <div>
+
+            <h1>COME & SEE</h1>
+
+            <span>
+                Participant Management
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <nav class="cas-navigation">
+
+        <!-- HOME -->
+
+        <a
+                th:href="@{/home}"
+                class="nav-button">
+
+            Home
+
+        </a>
+
+
+        <!-- VIEW PARTICIPANTS -->
+
+        <a
+                th:href="@{/participants}"
+                class="nav-button">
+
+            View Participants
+
+            <span>→</span>
+
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+     ===================================================== -->
+
+<main class="add-page">
+
+
+    <!-- =================================================
+         HERO
+         ================================================= -->
+
+    <section class="hero-section">
+
+        <div class="hero-badge">
+
+            <span class="pulse-dot"></span>
+
+            PARTICIPANT REGISTRATION
+
+        </div>
+
+
+        <h2>
+
+            Add someone to the
+
+            <span>Come & See</span>
+
+            experience.
+
+        </h2>
+
+
+        <p>
+
+            Enter the participant's details below.
+            Make sure every detail is accurate before submitting.
+
+        </p>
+
+    </section>
+
+
+    <!-- =================================================
+         FORM + INFO
+         ================================================= -->
+
+    <section class="form-wrapper">
+
+
+        <!-- =================================================
+             FORM CARD
+             ================================================= -->
+
+        <div class="form-card">
+
+
+            <div class="form-header">
+
+                <div>
+
+                    <span class="section-number">
+                        01
+                    </span>
+
+                    <h3>
+                        Participant Details
+                    </h3>
+
+                    <p>
+                        Basic information about the participant.
+                    </p>
+
+                </div>
+
+
+                <div class="floating-symbol">
+                    ✦
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 FORM
+                 ================================================= -->
+
+            <form
+                    id="participantForm"
+                    th:action="@{/participants/add}"
+                    method="post"
+                    novalidate>
+
+
+                <!-- =========================================
+                     NAME
+                     ========================================= -->
+
+                <div class="form-group">
+
+                    <label for="name">
+
+                        Full Name
+
+                        <span>*</span>
+
+                    </label>
+
+
+                    <div class="input-container">
+
+                        <div class="input-icon">
+                            ⌁
+                        </div>
+
+                        <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Enter participant's name"
+                                autocomplete="name"
+                                minlength="2"
+                                maxlength="100"
+                                required>
+
+                    </div>
+
+
+                    <small
+                            class="field-error"
+                            id="nameError">
+                    </small>
+
+                </div>
+
+
+                <!-- =========================================
+                     CHURCH YOUTH
+                     ========================================= -->
+
+                <div class="form-group church-youth-group">
+
+                    <label class="checkbox-label">
+
+                        <input
+                                type="checkbox"
+                                id="churchYouth"
+                                name="churchYouth"
+                                value="true">
+
+                        <span>
+                            Is a church youth?
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- =========================================
+                     INVITED BY
+                     ========================================= -->
+
+                <div
+                        class="form-group"
+                        id="invitedByGroup">
+
+                    <label for="invited_by">
+
+                        Invited By
+
+                        <span>*</span>
+
+                    </label>
+
+
+                    <div class="input-container">
+
+                        <div class="input-icon">
+                            ♧
+                        </div>
+
+                        <input
+                                type="text"
+                                id="invited_by"
+                                name="invited_by"
+                                placeholder="Who invited this participant?"
+                                minlength="2"
+                                maxlength="100"
+                                required>
+
+                    </div>
+
+
+                    <small
+                            class="field-error"
+                            id="invitedByError">
+                    </small>
+
+                </div>
+
+
+                <!-- =========================================
+                     PHONE NUMBER
+                     ========================================= -->
+
+                <div class="form-group">
+
+                    <label for="phoneNumber">
+
+                        Phone Number
+
+                        <span>*</span>
+
+                    </label>
+
+
+                    <div class="input-container">
+
+                        <div class="input-icon">
+                            ☎
+                        </div>
+
+                        <input
+                                type="tel"
+                                id="phoneNumber"
+                                name="phoneNumber"
+                                placeholder="Enter 10-digit phone number"
+                                autocomplete="tel"
+                                required
+                                maxlength="10"
+                                inputmode="numeric"
+                                pattern="[0-9]{10}">
+                                required>
+
+                    </div>
+
+
+                    <small
+                            class="field-error"
+                            id="phoneNumberError">
+                    </small>
+
+                </div>
+
+
+                <!-- =========================================
+                     GENDER
+                     ========================================= -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Gender
+
+                        <span>*</span>
+
+                    </label>
+
+
+                    <div class="gender-options">
+
+
+                        <!-- MALE -->
+
+                        <label class="gender-option">
+
+                            <input
+                                    type="radio"
+                                    name="gender"
+                                    value="Male"
+                                    required>
+
+                            <span class="gender-card">
+
+                                <span class="gender-symbol">
+                                    ♂
+                                </span>
+
+                                <span>
+                                    Male
+                                </span>
+
+                            </span>
+
+                        </label>
+
+
+                        <!-- FEMALE -->
+
+                        <label class="gender-option">
+
+                            <input
+                                    type="radio"
+                                    name="gender"
+                                    value="Female">
+
+                            <span class="gender-card">
+
+                                <span class="gender-symbol">
+                                    ♀
+                                </span>
+
+                                <span>
+                                    Female
+                                </span>
+
+                            </span>
+
+                        </label>
+
+
+                        <!-- OTHER -->
+
+                        <label class="gender-option">
+
+                            <input
+                                    type="radio"
+                                    name="gender"
+                                    value="Other">
+
+                            <span class="gender-card">
+
+                                <span class="gender-symbol">
+                                    ◈
+                                </span>
+
+                                <span>
+                                    Other
+                                </span>
+
+                            </span>
+
+                        </label>
+
+
+                    </div>
+
+
+                    <small
+                            class="field-error"
+                            id="genderError">
+                    </small>
+
+                </div>
+
+
+                <!-- =========================================
+                     DIVIDER
+                     ========================================= -->
+
+                <div class="form-divider"></div>
+
+
+                <!-- =========================================
+                     SUBMIT
+                     ========================================= -->
+
+                <button
+                        type="submit"
+                        class="submit-button">
+
+                    <span class="button-text">
+                        Add Participant
+                    </span>
+
+                    <span class="button-arrow">
+                        →
+                    </span>
+
+                    <span class="button-loader"></span>
+
+                </button>
+
+
+                <p class="required-note">
+
+                    <span>*</span>
+
+                    Required fields
+
+                </p>
+
+
+            </form>
+
+        </div>
+
+
+        <!-- =================================================
+             INFORMATION CARD
+             ================================================= -->
+
+        <aside class="info-card">
+
+            <div class="info-glow"></div>
+
+
+            <span class="info-label">
+                COME & SEE
+            </span>
+
+
+            <h3>
+
+                "Come and see."
+
+                <span>
+                    — John 1:46
+                </span>
+
+            </h3>
+
+
+            <p>
+
+                “Nazareth! Can anything good come from there?”
+                Nathanael asked. “Come and see,” said Philip.
+
+            </p>
+
+
+            <div class="info-line"></div>
+
+
+            <div class="info-footer">
+
+                <span>
+                    ✦
+                </span>
+
+                <span>
+                    Participant Portal
+                </span>
+
+            </div>
+
+        </aside>
+
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     SUCCESS TOAST
+     ===================================================== -->
+
+<div
+        id="successToast"
+        class="toast success-toast">
+
+    <div class="toast-icon">
+        ✓
+    </div>
+
+
+    <div>
+
+        <strong>
+            Participant Added
+        </strong>
+
+        <p id="successMessage">
+            Participant was added successfully.
+        </p>
+
+    </div>
+
+
+    <button
+            type="button"
+            onclick="closeToast()">
+
+        ×
+
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     REQUIRED INFORMATION POPUP
+     ===================================================== -->
+
+<div
+        id="requiredPopup"
+        class="toast success-toast">
+
+    <div class="toast-icon">
+        !
+    </div>
+
+
+    <div>
+
+        <strong>
+            Please fill all required information
+        </strong>
+
+        <p>
+            Please complete all required fields before submitting.
+        </p>
+
+    </div>
+
+    <button
+            type="button"
+            onclick="closeRequiredPopup()">
+
+        ×
+
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script th:src="@{/js/cas.js}"></script>
+
+
+</body>
+
+</html>
